@@ -1,23 +1,20 @@
 package com.github.jeffreyning.mybatisplus.conf;
 
 import com.github.jeffreyning.mybatisplus.base.MppSqlInjector;
-import com.github.jeffreyning.mybatisplus.handler.DataAutoFill;
 //import com.github.jeffreyning.mybatisplus.ognl.NhOgnlClassResolver;
 import com.github.jeffreyning.mybatisplus.scan.ResultMapUtil;
 import com.github.jeffreyning.mybatisplus.scan.ScanUtil;
 import com.github.jeffreyning.mybatisplus.util.LambdaUtil;
 import com.github.jeffreyning.mybatisplus.util.PlusACUtils;
 //import org.apache.ibatis.scripting.xmltags.OgnlCache;
-import org.mybatis.spring.SqlSessionTemplate;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
-import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;

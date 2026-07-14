@@ -6,8 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.TableInfo;
 import com.baomidou.mybatisplus.core.metadata.TableInfoHelper;
 import com.baomidou.mybatisplus.core.toolkit.Assert;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.toolkit.SqlHelper;
+import com.baomidou.mybatisplus.spring.service.impl.ServiceImpl;
 import com.github.jeffreyning.mybatisplus.anno.MppMultiId;
 import com.github.jeffreyning.mybatisplus.base.MppBaseMapper;
 import com.github.jeffreyning.mybatisplus.util.CheckId;
@@ -107,9 +107,9 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
             if (updateFlag) {
                 MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap();
                 param.put("et", entity);
-                sqlSession.update(tableInfo.getSqlStatement("updateByMultiId"), param);
+              return   sqlSession.update(tableInfo.getSqlStatement("updateByMultiId"), param);
             } else {
-                sqlSession.insert(tableInfo.getSqlStatement(SqlMethod.INSERT_ONE.getMethod()), entity);
+             return    sqlSession.insert(tableInfo.getSqlStatement(SqlMethod.INSERT_ONE.getMethod()), entity);
             }
 
         });
@@ -120,10 +120,11 @@ public class MppServiceImpl<M extends MppBaseMapper<T>, T> extends ServiceImpl<M
     )
     public boolean updateBatchByMultiId(Collection<T> entityList, int batchSize) {
         String sqlStatement = SqlHelper.table(this.getEntityClass()).getSqlStatement("updateByMultiId");
+        //(Collection<E> list, int batchSize, BiFunction<SqlSession, E, Integer> execBiFunc)
         return this.executeBatch(entityList, batchSize, (sqlSession, entity) -> {
             MapperMethod.ParamMap<T> param = new MapperMethod.ParamMap();
             param.put("et", entity);
-            sqlSession.update(sqlStatement, param);
+         return    sqlSession.update(sqlStatement, param);
         });
     }
 }
